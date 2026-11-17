@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es" class="sin-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Marx — Por un arte libre y revolucionario</title>
+<meta name="description" content="Casa Marx: red internacional de casas culturales autogestionadas en Brasil, Chile, Argentina y el Estado español. Talleres, cine, lectura, música y debate.">
+<meta property="og:title" content="Casa Marx — Por un arte libre y revolucionario">
+<meta property="og:description" content="Red internacional de casas culturales autogestionadas.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --papel: #FBF6EA;
+    --tinta: #1A1714;
+    --rojo: #E8482B;
+    --azul: #2B6FE8;
+    --amarillo: #F0B429;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* textura de papel */
+  body::after {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    opacity: .5; mix-blend-mode: multiply;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(26,23,20,.045) 0 1px, transparent 1px 3px),
+      radial-gradient(rgba(26,23,20,.05) 1px, transparent 1.4px);
+    background-size: auto, 4px 4px;
+  }
+
+  h1, h2, h3, .display { font-family: 'Archivo Black', Impact, sans-serif; font-weight: 400; letter-spacing: -.03em; }
+  a { color: var(--tinta); }
+  a:hover { color: var(--rojo); }
+  :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+
+  .envoltura { padding-inline: clamp(20px, 5vw, 72px); }
+  .seccion { padding-block: clamp(56px, 8vw, 88px); }
+
+  .encabezado-seccion {
+    display: flex; flex-wrap: wrap; gap: 12px 24px;
+    align-items: baseline; justify-content: space-between;
+    margin-bottom: clamp(28px, 4vw, 48px);
+  }
+  .encabezado-seccion h2 { margin: 0; font-size: clamp(32px, 5.5vw, 46px); text-transform: uppercase; }
+  .etiqueta { margin: 0; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+
+  /* ---------- portada ---------- */
+  .portada { position: relative; overflow: hidden; padding-top: clamp(28px, 4vw, 56px); padding-bottom: clamp(64px, 9vw, 110px); }
+  .mancha { position: absolute; border-radius: 50%; mix-blend-mode: multiply; pointer-events: none; }
+  .mancha-1 { top: -22vw; right: -16vw; width: 56vw; height: 56vw; background: var(--rojo); animation: girar 48s linear infinite; }
+  .mancha-2 { top: 4vw; right: 6vw; width: 34vw; height: 34vw; background: var(--azul); animation: desfase 9s ease-in-out infinite; }
+  .banda-amarilla { position: absolute; left: -10vw; bottom: -2vw; width: 70vw; height: 12vw; background: var(--amarillo); mix-blend-mode: multiply; transform: rotate(-8deg); pointer-events: none; }
+
+  .navegacion {
+    position: relative; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center;
+    margin-bottom: clamp(40px, 7vw, 72px);
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+  }
+  .navegacion .marca { font-family: 'Archivo Black', sans-serif; font-size: 18px; letter-spacing: 0; text-transform: none; }
+  .navegacion a { text-decoration: none; }
+  .navegacion a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .sobretitulo { position: relative; z-index: 2; margin: 0 0 16px; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; }
+  .titulo { position: relative; z-index: 2; margin: 0; font-size: clamp(56px, 14vw, 188px); line-height: .82; letter-spacing: -.045em; text-transform: uppercase; }
+  .consigna { position: relative; z-index: 2; margin: clamp(18px, 3vw, 28px) 0 0; max-width: 24ch; font-family: 'Archivo Black', sans-serif; font-size: clamp(24px, 5vw, 56px); line-height: 1.02; letter-spacing: -.02em; color: var(--rojo); }
+
+  .bajada-fila { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 36px); align-items: flex-end; margin-top: clamp(32px, 5vw, 52px); }
+  .bajada { margin: 0; max-width: 50ch; font-size: clamp(16px, 2vw, 18px); line-height: 1.55; }
+
+  .boton {
+    display: inline-block;
+    font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: .04em; text-transform: uppercase;
+    text-decoration: none; background: var(--tinta); color: var(--papel);
+    padding: 17px 30px; transition: transform .18s ease, background-color .18s ease;
+  }
+  .boton:hover { background: var(--rojo); color: var(--papel); transform: translate(-3px, -3px); }
+
+  /* ---------- marquesina ---------- */
+  .marquesina { background: var(--tinta); color: var(--papel); padding-block: 14px; overflow: hidden; }
+  .marquesina-pista { display: flex; width: max-content; gap: 64px; animation: correr 34s linear infinite; }
+  .marquesina span { font-family: 'Archivo Black', sans-serif; font-size: clamp(16px, 2.2vw, 20px); text-transform: uppercase; white-space: nowrap; }
+
+  /* ---------- casas ---------- */
+  .rejilla-casas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 2px; background: var(--tinta); border: 2px solid var(--tinta);
+  }
+  .casa {
+    position: relative; overflow: hidden;
+    display: block; text-decoration: none; color: var(--tinta);
+    background: var(--papel); padding: 28px; min-height: 200px;
+  }
+  .casa .capa { position: absolute; inset: 0; background: var(--rojo); mix-blend-mode: multiply; transform: translateY(101%); transition: transform .45s cubic-bezier(.16,1,.3,1); }
+  .casa:hover .capa, .casa:focus-visible .capa { transform: translateY(0); }
+  .casa > * { position: relative; z-index: 2; transition: color .35s ease; }
+  .casa:hover .numero, .casa:focus-visible .numero,
+  .casa:hover h3, .casa:focus-visible h3,
+  .casa:hover .cuenta, .casa:focus-visible .cuenta { color: var(--papel); }
+  .casa .marca-circulo { position: absolute; top: 26px; right: 26px; z-index: 2; width: 34px; height: 34px; border: 3px solid var(--rojo); border-radius: 50%; transition: transform .4s cubic-bezier(.16,1,.3,1); }
+  .casa:hover .marca-circulo, .casa:focus-visible .marca-circulo { transform: translate(8px, -8px) rotate(14deg); border-color: var(--papel); }
+  .casa .numero { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--rojo); margin-bottom: 42px; }
+  .casa h3 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 30px); line-height: 1; text-transform: uppercase; }
+  .casa .cuenta { display: block; font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
+
+  /* ---------- mapa ---------- */
+  .marco-mapa { position: relative; width: 100%; aspect-ratio: 1000 / 480; background: var(--azul); overflow: hidden; }
+  .cuadricula { position: absolute; inset: 0; background-image: linear-gradient(rgba(251,246,234,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(251,246,234,.18) 1px, transparent 1px); background-size: 56px 56px; }
+  .marco-mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .continentes-rojo { animation: desfase 10s ease-in-out infinite; }
+  .pin { cursor: pointer; }
+  .pin .cabeza { transition: transform .2s cubic-bezier(.2,1.8,.3,1); transform-box: fill-box; transform-origin: center; }
+  .pin:hover .cabeza, .pin:focus-visible .cabeza { transform: scale(1.55); }
+  .pin .globo { opacity: 0; transition: opacity .18s ease; }
+  .pin:hover .globo, .pin:focus-visible .globo { opacity: 1; }
+  .onda { animation: onda 3.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  .pie-mapa { position: absolute; left: 16px; bottom: 14px; margin: 0; background: var(--tinta); color: var(--papel); padding: 6px 10px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+
+  /* ---------- cultura ---------- */
+  .cultura { background: var(--tinta); color: var(--papel); }
+  .cultura h2 { color: var(--papel); }
+  .cultura .etiqueta { color: var(--amarillo); }
+  .nota {
+    display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: baseline;
+    padding: 24px 0; border-top: 1px solid rgba(251,246,234,.3);
+    text-decoration: none; transition: background-color .25s ease, padding-left .25s ease;
+  }
+  .nota:last-child { border-bottom: 1px solid rgba(251,246,234,.3); }
+  .nota:hover, .nota:focus-visible { background: var(--azul); padding-left: 20px; }
+  .nota .n { font-family: 'Archivo Black', sans-serif; font-size: 14px; color: var(--amarillo); min-width: 3ch; }
+  .nota .titular { flex: 999 1 380px; min-width: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(19px, 2.6vw, 26px); line-height: 1.2; color: var(--papel); }
+  .nota .fecha { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--papel); }
+  .fuente { margin: 28px 0 0; font-size: 13px; color: var(--papel); }
+  .fuente a { color: var(--amarillo); }
+  .fuente a:hover { color: var(--papel); }
+
+  /* ---------- pie ---------- */
+  .pie { background: var(--rojo); color: var(--tinta); padding-block: clamp(40px, 6vw, 64px); }
+  .pie .display { margin: 0; font-size: clamp(30px, 8vw, 78px); line-height: .95; text-transform: uppercase; }
+  .pie-enlaces { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 22px 0 0; padding: 0; list-style: none; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .pie-enlaces a { text-decoration: none; border-bottom: 2px solid var(--tinta); }
+  .pie-enlaces a:hover { color: var(--papel); border-color: var(--papel); }
+
+  /* ---------- animaciones ---------- */
+  @keyframes girar { to { transform: rotate(360deg) } }
+  @keyframes desfase { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(7px, -6px) } }
+  @keyframes correr { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  @keyframes onda { 0% { opacity: .6; transform: scale(.5) } 100% { opacity: 0; transform: scale(3) } }
+
+  .revelar { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .revelar.visible { opacity: 1; transform: none; }
+  .revelar-diagonal { opacity: 0; transform: translate(-50px, 26px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .revelar-diagonal.visible { opacity: 1; transform: none; }
+  html.sin-js .revelar, html.sin-js .revelar-diagonal { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mancha-1, .mancha-2, .marquesina-pista, .continentes-rojo, .onda { animation: none !important; }
+    .revelar, .revelar-diagonal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<header class="portada envoltura">
+  <div class="mancha mancha-1" aria-hidden="true"></div>
+  <div class="mancha mancha-2" aria-hidden="true"></div>
+  <div class="banda-amarilla" aria-hidden="true"></div>
+
+  <nav class="navegacion" aria-label="Navegación principal">
+    <span class="marca">Casa Marx</span>
+    <a href="#casas">Casas</a>
+    <a href="#mapa">Mapa</a>
+    <a href="#cultura">Cultura</a>
+  </nav>
+
+  <p class="sobretitulo">Red internacional de casas culturales</p>
+
+  <h1 class="titulo revelar-diagonal">Casa<br>Marx</h1>
+
+  <p class="consigna revelar-diagonal">«Por un arte libre y revolucionario»</p>
+
+  <div class="bajada-fila revelar">
+    <p class="bajada">
+      Nueve casas culturales autogestionadas en Brasil, Chile, Argentina y el Estado español:
+      talleres, cine, lectura, música y debate. Partimos de que el arte no es un terreno aparte
+      de la lucha de clases, sino uno donde se discuten la memoria, el acceso desigual a la
+      cultura y las condiciones de quienes la producen.
+    </p>
+    <a class="boton" href="#casas">Entrar a la red</a>
+  </div>
+</header>
+
+<!-- ============ MARQUESINA ============ -->
+<div class="marquesina" aria-hidden="true">
+  <div class="marquesina-pista">
+    <span>Casa Marx ✦ red internacional ✦ cultura y organización ✦ Casa Marx ✦ red internacional ✦ cultura y organización ✦</span>
+    <span>Casa Marx ✦ red internacional ✦ cultura y organización ✦ Casa Marx ✦ red internacional ✦ cultura y organización ✦</span>
+  </div>
+</div>
+
+<!-- ============ CASAS ============ -->
+<section class="seccion envoltura" id="casas">
+  <div class="encabezado-seccion">
+    <h2>Las casas</h2>
+    <p class="etiqueta" style="color: var(--rojo)">Cada tarjeta abre su Instagram</p>
+  </div>
+
+  <div class="rejilla-casas">
+    <a class="casa revelar" href="https://instagram.com/casamarxbh" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 01 · Brasil</span>
+      <h3>Belo Horizonte</h3>
+      <span class="cuenta">@casamarxbh</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarxrj" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 02 · Brasil</span>
+      <h3>Río de Janeiro</h3>
+      <span class="cuenta">@casamarxrj</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarxsp" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 03 · Brasil</span>
+      <h3>São Paulo</h3>
+      <span class="cuenta">@casamarxsp</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarx.arica" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 04 · Chile</span>
+      <h3>Arica</h3>
+      <span class="cuenta">@casamarx.arica</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casadesiertorojo" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 05 · Chile</span>
+      <h3>Antofagasta</h3>
+      <span class="cuenta">@casadesiertorojo</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casacultural.marx.valparaiso" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 06 · Chile</span>
+      <h3>Valparaíso</h3>
+      <span class="cuenta">@casacultural.marx.valparaiso</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarx.stgo" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 07 · Chile</span>
+      <h3>Santiago</h3>
+      <span class="cuenta">@casamarx.stgo</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarx.neuquen" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 08 · Argentina</span>
+      <h3>Neuquén</h3>
+      <span class="cuenta">@casamarx.neuquen</span>
+    </a>
+    <a class="casa revelar" href="https://instagram.com/casamarx.vallekas" target="_blank" rel="noopener">
+      <span class="capa" aria-hidden="true"></span>
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span class="numero">Casa 09 · España</span>
+      <h3>Madrid</h3>
+      <span class="cuenta">@casamarx.vallekas</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ MAPA ============ -->
+<section class="seccion envoltura" id="mapa" style="padding-top: 0">
+  <div class="encabezado-seccion">
+    <h2>Dónde estamos</h2>
+    <p class="etiqueta" style="color: var(--azul)">Toca o pasa el cursor por cada punto</p>
+  </div>
+
+  <div class="marco-mapa revelar">
+    <div class="cuadricula" aria-hidden="true"></div>
+
+    <svg viewBox="0 0 1000 480" role="img" aria-label="Mapa dibujado a mano con las nueve ciudades donde hay una Casa Marx">
+      <defs>
+        <g id="continentes">
+          <path d="M33 66 L83 50 L139 50 L194 53 L236 43 L278 40 L333 83 L347 126 L306 142 L292 166 L275 199 L231 195 L208 209 L181 182 L153 149 L156 123 L125 89 L83 83 Z"/>
+          <path d="M275 255 L292 281 L361 285 L403 305 L392 341 L367 364 L339 397 L317 430 L306 460 L297 430 L303 381 L306 341 L283 298 Z"/>
+          <path d="M453 232 L500 228 L542 175 L589 179 L619 242 L642 245 L611 291 L611 331 L592 367 L572 394 L550 394 L536 358 L525 288 L500 265 L472 265 Z"/>
+          <path d="M472 162 L475 139 L489 123 L506 113 L514 89 L533 99 L556 96 L583 83 L611 123 L578 146 L550 149 L533 156 L508 139 Z"/>
+          <path d="M611 123 L639 132 L667 142 L694 182 L700 215 L722 232 L744 209 L764 232 L792 248 L806 215 L833 175 L842 149 L856 139 L889 116 L894 83 L944 76 L986 56 L944 43 L861 40 L778 30 L694 40 L639 56 L606 66 Z"/>
+          <path d="M814 351 L861 321 L894 318 L906 344 L917 404 L889 407 L861 387 L819 394 Z"/>
+        </g>
+      </defs>
+
+      <use href="#continentes" class="continentes-rojo" fill="#E8482B" stroke="#E8482B" stroke-width="4" stroke-linejoin="round" style="mix-blend-mode: multiply"></use>
+      <use href="#continentes" fill="#FBF6EA" stroke="#1A1714" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"></use>
+
+      <a class="pin" href="https://instagram.com/casamarxbh" target="_blank" rel="noopener" transform="translate(381 345)">
+        <title>Belo Horizonte, Brasil</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-82" y="-44" width="164" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Belo Horizonte, Brasil</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarxrj" target="_blank" rel="noopener" transform="translate(386 358)">
+        <title>Río de Janeiro, Brasil</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-82" y="-44" width="164" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Río de Janeiro, Brasil</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarxsp" target="_blank" rel="noopener" transform="translate(368 363)">
+        <title>São Paulo, Brasil</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-68" y="-44" width="136" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">São Paulo, Brasil</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarx.arica" target="_blank" rel="noopener" transform="translate(304 340)">
+        <title>Arica, Chile</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-52" y="-44" width="104" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Arica, Chile</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casadesiertorojo" target="_blank" rel="noopener" transform="translate(308 360)">
+        <title>Antofagasta, Chile</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-72" y="-44" width="144" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Antofagasta, Chile</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casacultural.marx.valparaiso" target="_blank" rel="noopener" transform="translate(295 386)">
+        <title>Valparaíso, Chile</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-66" y="-44" width="132" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Valparaíso, Chile</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarx.stgo" target="_blank" rel="noopener" transform="translate(310 398)">
+        <title>Santiago, Chile</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-62" y="-44" width="124" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Santiago, Chile</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarx.neuquen" target="_blank" rel="noopener" transform="translate(318 412)">
+        <title>Neuquén, Argentina</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-76" y="-44" width="152" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Neuquén, Argentina</text></g>
+      </a>
+      <a class="pin" href="https://instagram.com/casamarx.vallekas" target="_blank" rel="noopener" transform="translate(490 148)">
+        <title>Madrid, España</title>
+        <circle class="onda" r="9" fill="#FBF6EA"></circle>
+        <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
+        <g class="globo"><rect x="-62" y="-44" width="124" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Madrid, España</text></g>
+      </a>
+    </svg>
+
+    <p class="pie-mapa">Mapa trazado a mano · posiciones aproximadas</p>
+  </div>
+</section>
+
+<!-- ============ CULTURA ============ -->
+<section class="cultura seccion envoltura" id="cultura">
+  <div class="encabezado-seccion">
+    <h2>Cultura</h2>
+    <p class="etiqueta">Lecturas que nos interesan</p>
+  </div>
+
+  <div>
+    <a class="nota revelar" href="https://www.laizquierdadiario.com/Trelew-tres-dias-de-teatro-independiente-libros-y-cultura-autogestiva-en-Casa-Marx" target="_blank" rel="noopener">
+      <span class="n">01</span>
+      <span class="titular">Trelew: tres días de teatro independiente, libros y cultura autogestiva en Casa Marx</span>
+      <span class="fecha">4 nov</span>
+    </a>
+    <a class="nota revelar" href="https://www.laizquierdadiario.com/Filosofia-y-Letras-Presentacion-de-Literatura-y-revolucion-de-Trotsky" target="_blank" rel="noopener">
+      <span class="n">02</span>
+      <span class="titular">Presentación de Literatura y revolución, de Trotsky</span>
+      <span class="fecha">13 nov</span>
+    </a>
+    <a class="nota revelar" href="https://www.laizquierdadiario.com/Pablo-Picotto-los-artistas-estamos-acostumbrados-a-la-autogestion" target="_blank" rel="noopener">
+      <span class="n">03</span>
+      <span class="titular">Pablo Picotto: «los artistas estamos acostumbrados a la autogestión»</span>
+      <span class="fecha">9 nov</span>
+    </a>
+    <a class="nota revelar" href="https://www.laizquierdadiario.com/Dos-pasiones-la-musica-y-la-revolucion" target="_blank" rel="noopener">
+      <span class="n">04</span>
+      <span class="titular">Dos pasiones, la música y la revolución</span>
+      <span class="fecha">13 nov</span>
+    </a>
+  </div>
+
+  <p class="fuente">
+    Notas publicadas en la sección Cultura de
+    <a href="https://www.laizquierdadiario.com/Cultura" target="_blank" rel="noopener">La Izquierda Diario</a>.
+  </p>
+</section>
+
+<!-- ============ PIE ============ -->
+<footer class="pie envoltura">
+  <p class="display">Casa Marx</p>
+  <ul class="pie-enlaces">
+    <li><a href="#casas">Las casas</a></li>
+    <li><a href="#mapa">Mapa</a></li>
+    <li><a href="#cultura">Cultura</a></li>
+    <li><a href="mailto:CORREO@EJEMPLO.COM">Contacto</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Revelado al hacer scroll. Sin JS, todo se muestra igual.
+  document.documentElement.classList.remove('sin-js');
+  (function () {
+    var elementos = document.querySelectorAll('.revelar, .revelar-diagonal');
+    if (!('IntersectionObserver' in window)) {
+      elementos.forEach(function (el) { el.classList.add('visible'); });
+      return;
+    }
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada, i) {
+        if (entrada.isIntersecting) {
+          var el = entrada.target;
+          var retraso = (el.dataset.retraso || i * 60);
+          setTimeout(function () { el.classList.add('visible'); }, retraso);
+          observador.unobserve(el);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    elementos.forEach(function (el) { observador.observe(el); });
+  })();
+
+  // Escalona la entrada de las tarjetas de casas.
+  document.querySelectorAll('.rejilla-casas .casa').forEach(function (el, i) {
+    el.dataset.retraso = i * 70;
+  });
+</script>
+</body>
+</html>
