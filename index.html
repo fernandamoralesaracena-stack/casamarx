@@ -99,9 +99,11 @@
   /* ---------- casas ---------- */
   .rejilla-casas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2px; background: var(--tinta); border: 2px solid var(--tinta);
   }
+  @media (max-width: 900px) { .rejilla-casas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .rejilla-casas { grid-template-columns: 1fr; } }
   .casa {
     position: relative; overflow: hidden;
     display: block; text-decoration: none; color: var(--tinta);
@@ -123,7 +125,7 @@
   .marco-mapa { position: relative; width: 100%; aspect-ratio: 1000 / 480; background: var(--azul); overflow: hidden; }
   .cuadricula { position: absolute; inset: 0; background-image: linear-gradient(rgba(251,246,234,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(251,246,234,.18) 1px, transparent 1px); background-size: 56px 56px; }
   .marco-mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .continentes-rojo { animation: desfase 10s ease-in-out infinite; }
+  .continentes-rojo { transform: translate(6px, -5px); animation: desfase 10s ease-in-out infinite; }
   .pin { cursor: pointer; }
   .pin .cabeza { transition: transform .2s cubic-bezier(.2,1.8,.3,1); transform-box: fill-box; transform-origin: center; }
   .pin:hover .cabeza, .pin:focus-visible .cabeza { transform: scale(1.55); }
@@ -159,7 +161,7 @@
 
   /* ---------- animaciones ---------- */
   @keyframes girar { to { transform: rotate(360deg) } }
-  @keyframes desfase { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(7px, -6px) } }
+  @keyframes desfase { 0%, 100% { transform: translate(6px, -5px) } 50% { transform: translate(-5px, 6px) } }
   @keyframes correr { from { transform: translateX(0) } to { transform: translateX(-50%) } }
   @keyframes onda { 0% { opacity: .6; transform: scale(.5) } 100% { opacity: 0; transform: scale(3) } }
 
@@ -303,7 +305,7 @@
       <defs>
         <g id="continentes">
           <path d="M33 66 L83 50 L139 50 L194 53 L236 43 L278 40 L333 83 L347 126 L306 142 L292 166 L275 199 L231 195 L208 209 L181 182 L153 149 L156 123 L125 89 L83 83 Z"/>
-          <path d="M275 255 L292 281 L361 285 L403 305 L392 341 L367 364 L339 397 L317 430 L306 460 L297 430 L303 381 L306 341 L283 298 Z"/>
+          <path d="M275 255 L289 245 L303 242 L328 248 L356 265 L361 281 L378 291 L394 298 L403 308 L392 328 L389 351 L367 364 L353 394 L342 407 L328 417 L320 430 L311 453 L302 460 L297 430 L297 404 L303 381 L306 357 L303 341 L289 328 L283 298 L278 281 L281 271 Z"/>
           <path d="M453 232 L500 228 L542 175 L589 179 L619 242 L642 245 L611 291 L611 331 L592 367 L572 394 L550 394 L536 358 L525 288 L500 265 L472 265 Z"/>
           <path d="M472 162 L475 139 L489 123 L506 113 L514 89 L533 99 L556 96 L583 83 L611 123 L578 146 L550 149 L533 156 L508 139 Z"/>
           <path d="M611 123 L639 132 L667 142 L694 182 L700 215 L722 232 L744 209 L764 232 L792 248 L806 215 L833 175 L842 149 L856 139 L889 116 L894 83 L944 76 L986 56 L944 43 L861 40 L778 30 L694 40 L639 56 L606 66 Z"/>
@@ -320,13 +322,13 @@
         <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
         <g class="globo"><rect x="-82" y="-44" width="164" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Belo Horizonte, Brasil</text></g>
       </a>
-      <a class="pin" href="https://instagram.com/casamarxrj" target="_blank" rel="noopener" transform="translate(386 358)">
+      <a class="pin" href="https://instagram.com/casamarxrj" target="_blank" rel="noopener" transform="translate(380 357)">
         <title>Río de Janeiro, Brasil</title>
         <circle class="onda" r="9" fill="#FBF6EA"></circle>
         <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
         <g class="globo"><rect x="-82" y="-44" width="164" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Río de Janeiro, Brasil</text></g>
       </a>
-      <a class="pin" href="https://instagram.com/casamarxsp" target="_blank" rel="noopener" transform="translate(368 363)">
+      <a class="pin" href="https://instagram.com/casamarxsp" target="_blank" rel="noopener" transform="translate(363 366)">
         <title>São Paulo, Brasil</title>
         <circle class="onda" r="9" fill="#FBF6EA"></circle>
         <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
@@ -344,7 +346,7 @@
         <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
         <g class="globo"><rect x="-72" y="-44" width="144" height="26" fill="#1A1714"></rect><text x="0" y="-26" text-anchor="middle" font-size="13" font-weight="700" fill="#FBF6EA">Antofagasta, Chile</text></g>
       </a>
-      <a class="pin" href="https://instagram.com/casacultural.marx.valparaiso" target="_blank" rel="noopener" transform="translate(295 386)">
+      <a class="pin" href="https://instagram.com/casacultural.marx.valparaiso" target="_blank" rel="noopener" transform="translate(301 386)">
         <title>Valparaíso, Chile</title>
         <circle class="onda" r="9" fill="#FBF6EA"></circle>
         <circle class="cabeza" r="7.5" fill="#F0B429" stroke="#1A1714" stroke-width="3"></circle>
